@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  validator:
+    image: ethereum/client-go:stable
+    container_name: askol-validator
+    restart: unless-stopped
+    command:
+      - --datadir=/root/.ethereum
+      - --http
+      - --http.addr=0.0.0.0
+      - --http.port=8545
+      - --http.api=eth,net,web3,personal,miner,clique
+      - --http.corsdomain=*
+      - --http.vhosts=*
+      - --ws
+      - --ws.addr=0.0.0.0
+      - --ws.port=8546
+      - --ws.api=eth,net,web3,clique
+      - --ws.origins=*
+      - --networkid=998877
+      - --mine
+      - --miner.threads=1
+      - --allow-insecure-unlock
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+      - "30303:30303"
+      - "30303:30303/udp"
+    volumes:
+      - ./data:/root/.ethereum
+      - ./genesis.json:/root/genesis.json
