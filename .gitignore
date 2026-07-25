@@ -1,0 +1,4 @@
+data/
+keystore/
+*.log
+.DS_Store
