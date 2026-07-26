@@ -1,11 +1,12 @@
 FROM ethereum/client-go:stable
 
-# Genesis dosyasını kopyala ve ağı başlat
+# Genesis dosyasını yükle ve başlat
 COPY genesis.json /tmp/genesis.json
 RUN geth --datadir /root/.ethereum init /tmp/genesis.json
 
-# RPC portunu dışarı aç
+# RPC portlarını aç
 EXPOSE 8545
+EXPOSE 8546
 
-# Geth sunucusunu dış dünyadan gelen isteklere açık şekilde başlat
-ENTRYPOINT ["geth", "--datadir", "/root/.ethereum", "--http", "--http.addr", "0.0.0.0", "--http.port", "8545", "--http.api", "eth,net,web3,personal", "--http.corsdomain", "*", "--ws", "--ws.addr", "0.0.0.0", "--ws.port", "8546", "--ws.api", "eth,net,web3", "--allow-insecure-unlock", "--mine"]
+# Ağı dış dünyaya açık ve madencilik yapar halde başlat (kaldırılan flag temizlendi)
+ENTRYPOINT ["geth", "--datadir", "/root/.ethereum", "--http", "--http.addr", "0.0.0.0", "--http.port", "8545", "--http.api", "eth,net,web3,personal,miner", "--http.corsdomain", "*", "--ws", "--ws.addr", "0.0.0.0", "--ws.port", "8546", "--ws.api", "eth,net,web3", "--mine", "--miner.etherbase", "0x0000000000000000000000000000000000000001"]
