@@ -8,5 +8,5 @@ RUN geth --datadir /root/.ethereum init /tmp/genesis.json
 EXPOSE 8545
 EXPOSE 8546
 
-# Düğümü dış dünyaya tamamen açık RPC sunucusu olarak başlat
-ENTRYPOINT ["geth", "--datadir", "/root/.ethereum", "--http", "--http.addr", "0.0.0.0", "--http.port", "8545", "--http.api", "eth,net,web3,personal,miner", "--http.corsdomain", "*", "--ws", "--ws.addr", "0.0.0.0", "--ws.port", "8546", "--ws.api", "eth,net,web3"]
+# Düğümü dış dünyaya ve dış domainlere açık RPC sunucusu olarak başlat
+ENTRYPOINT ["geth", "--datadir", "/root/.ethereum", "--http", "--http.addr", "0.0.0.0", "--http.port", "8545", "--http.vhosts", "*", "--http.api", "eth,net,web3,personal,miner", "--http.corsdomain", "*", "--ws", "--ws.addr", "0.0.0.0", "--ws.port", "8546", "--ws.api", "eth,net,web3"]
