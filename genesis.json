@@ -11,14 +11,16 @@
     "istanbulBlock": 0,
     "muirGlacierBlock": 0,
     "berlinBlock": 0,
-    "londonBlock": 0
+    "londonBlock": 0,
+    "terminalTotalDifficulty": 0,
+    "terminalTotalDifficultyPassed": true
   },
   "nonce": "0x0",
   "timestamp": "0x58ee40ba",
   "extraData": "0x",
   "gasLimit": "0x8000000",
-  "difficulty": "0x400",
+  "difficulty": "0x1",
   "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-  "coinbase": "0x0000000000000000000000000000000000000001",
+  "coinbase": "0x0000000000000000000000000000000000000000",
   "alloc": {}
 }
